@@ -31,7 +31,7 @@ async function addGlobImport(
   const content = [
     'const modules = {',
     files.map(
-      f => `  '${f}': import('${resolve(cwd, f)}')`,
+      f => `  '${f}': () => import('${resolve(cwd, f)}')`,
     ).join(',\n'),
     '}',
     'export default modules',
@@ -40,7 +40,7 @@ async function addGlobImport(
   const dts = [
     `declare const modules: {`,
     files.map(
-      f => `  '${f}': Promise<typeof import('${resolve(cwd, f)}')>`,
+      f => `  '${f}': () => Promise<typeof import('${resolve(cwd, f)}')>`,
     ).join(',\n'),
     `};`,
     `export default modules;`,
