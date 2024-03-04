@@ -16,7 +16,17 @@ export default function nitroGlobImport(items: NitroGlobImportItem[]): NitroModu
 }
 
 export interface NitroGlobImportItem {
+  /**
+   * The path to import the globbed files to.
+   *
+   * Must start with `#` and only contain alphanumeric characters, `-` and `_`.
+   */
   path: `#${string}`
+
+  /**
+   * The glob pattern to import.
+   * @see https://github.com/mrmlnc/fast-glob
+   */
   globInput: string | string[]
 }
 
