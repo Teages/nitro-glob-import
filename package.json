@@ -1,0 +1,58 @@
+{
+  "name": "@teages/nitro-glob-import",
+  "type": "module",
+  "version": "0.0.0",
+  "packageManager": "pnpm@8.15.1",
+  "description": "A module to provide glob import for Nitro Server.",
+  "license": "MIT",
+  "repository": "Teages/nitro-glob-import",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "dev:prepare": "nitro prepare --dir ./playground",
+    "dev": "nitro dev --dir playground",
+    "lint": "eslint --cache .",
+    "lint:fix": "eslint --cache --fix .",
+    "prepack": "pnpm build",
+    "release": "pnpm test && changelogen --release && npm publish && git push --follow-tags",
+    "test": "pnpm lint && pnpm test:types && vitest run",
+    "test:types": "tsc --noEmit --skipLibCheck"
+  },
+  "peerDependencies": {
+    "nitropack": "^2.9.1"
+  },
+  "dependencies": {
+    "fast-glob": "^3.3.2",
+    "pathe": "^1.1.2"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.6.4",
+    "@types/node": "^20.11.20",
+    "@vitest/coverage-v8": "^1.3.1",
+    "changelogen": "^0.5.5",
+    "destr": "^2.0.3",
+    "eslint": "^8.57.0",
+    "listhen": "^1.7.2",
+    "ofetch": "^1.3.3",
+    "typescript": "^5.3.3",
+    "ufo": "^1.4.0",
+    "unbuild": "^2.0.0",
+    "vitest": "^1.3.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
